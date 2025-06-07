@@ -10,20 +10,24 @@ public class UserDao {
 	
 	public UserDao() {
 		try {
-			String URL = "jdbc:ucanaccess://lib/QLNN.accdb";
-			connection = DriverManager.getConnection(URL);
+			String driverName = "com.mysql.cj.jdbc.Driver";
+			String URL = "jdbc:mysql://localhost:3306/qlsv";
+			String user = "Lan";
+			String pass = "12345";
+			connection = DriverManager.getConnection(URL, user, pass);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public boolean addUser(User user) {
-		String query = "INSERT INTO User ( HoTen, DiaChi, MatKhau, Loai) VALUES(?,?,?,?)";
+		String query = "INSERT INTO qlsv.user (maNguoiDung, HoTen, DiaChi, MatKhau, Loai) VALUES(?,?,?,?,?)";
 		try (PreparedStatement stmt = connection.prepareStatement(query)) {
-			stmt.setString(1, user.getHoTen());
-			stmt.setString(2, user.getDiaChi());
-			stmt.setString(3, user.getMatKhau());
-			stmt.setString(4, user.getLoai());
+			stmt.setInt(1, user.getMaNguoiDung());
+			stmt.setString(2, user.getHoTen());
+			stmt.setString(3, user.getDiaChi());
+			stmt.setString(4, user.getMatKhau());
+			stmt.setString(5, user.getLoai());
 
 			int rowInserted = stmt.executeUpdate();
 			return rowInserted > 0;
@@ -34,7 +38,7 @@ public class UserDao {
 	}
 
 	public boolean updateUser(User user) {
-		String query = "UPDATE User SET HoTen =?,DiaChi=?,MatKhau=?,Loai=? WHERE MaNguoiDung=?";
+		String query = "UPDATE qlsv.user SET HoTen =?,DiaChi=?,MatKhau=?,Loai=? WHERE MaNguoiDung=?";
 		try (PreparedStatement stmt=connection.prepareStatement(query)){
 			stmt.setString(1, user.getHoTen());
 			stmt.setString(2, user.getDiaChi());
@@ -51,7 +55,7 @@ public class UserDao {
 	}
 	
 	public boolean deleteUser(int userId) {
-		String query = "DELETE FROM User WHERE MaNguoiDung =?";
+		String query = "DELETE FROM qlsv.user WHERE MaNguoiDung =?";
 		try (PreparedStatement stmt = connection.prepareStatement(query)){
 			stmt.setInt(1, userId);
 			int rowDeleted = stmt.executeUpdate();

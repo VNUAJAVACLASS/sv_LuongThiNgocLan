@@ -1,3 +1,4 @@
+
 package bai_toan_tin_chi;
 
 import java.util.Scanner;
@@ -17,11 +18,12 @@ public class Main {
 			System.out.println("3.Gan mon hoc vua roi cho user(va nhap 5 diem)");
 			System.out.println("4.Xem user hoc mon gi va diem");
 			System.out.println("Chon: ");
-			
+
 			int choice = Integer.parseInt(sc.nextLine());
 			
 			switch(choice) {
 			case 1:
+				
 				System.out.println("Nhap ho ten: ");
 				String hoTen=sc.nextLine();
 				System.out.println("Nhap dia chi: ");
@@ -35,29 +37,33 @@ public class Main {
 				break;
 			
 			case 2:
+				System.out.println("Nhap ma mon hoc: ");
+				String maMh = sc.nextLine();
 				System.out.println("Nhap ten mon hoc: ");
 				String tenMh=sc.nextLine();
 				System.out.println("Nhap so tin chi: ");
 				int soTC = sc.nextInt();
 				System.out.println("Nhap he so 1:");
-				int heSo1=sc.nextInt();
+				float heSo1=sc.nextFloat();
 				System.out.println("Nhap he so 2:");
-				int heSo2=sc.nextInt();
+				float heSo2=sc.nextFloat();
 				System.out.println("Nhap he so 3:");
-				int heSo3=sc.nextInt();
+				float heSo3=sc.nextFloat();
 				System.out.println("Nhap he so 4:");
-				int heSo4=sc.nextInt();
+				float heSo4=sc.nextFloat();
 				System.out.println("Nhap he so 5:");
-				int heSo5=sc.nextInt();
-				Subject subject = new Subject(tenMh, soTC, heSo1, heSo2, heSo3, heSo4, heSo5);
+				float heSo5=sc.nextFloat();sc.nextLine();
+				Subject subject = new Subject(maMh, tenMh, soTC, heSo1, heSo2, heSo3, heSo4, heSo5);
 				subjectDao.addSubject(subject);
 				break;
 				
 			case 3:
+				System.out.println("Nhap ma mon hoc nguoi dung: ");
+				String maMhNd=sc.nextLine();
 				System.out.println("Nhap ma nguoi dung: ");
-				int maND=sc.nextInt();
+				String maND=sc.nextLine();
 				System.out.println("Nhap ma mon hoc: ");
-				int maMH = sc.nextInt();
+				String maMH = sc.nextLine();
 				System.out.println("Nhap diem 1:");
 				float diem1=sc.nextFloat();
 				System.out.println("Nhap diem 2:");
@@ -67,8 +73,9 @@ public class Main {
 				System.out.println("Nhap diem 4:");
 				float diem4=sc.nextFloat();
 				System.out.println("Nhap diem 5:");
-				float diem5=sc.nextFloat();
-				UserSubject userSubject = new UserSubject(maND, maMH, diem1, diem2, diem3, diem4, diem5);
+				float diem5=sc.nextFloat();sc.nextLine();
+				
+				UserSubject userSubject = new UserSubject(maMhNd, maND, maMH, diem1, diem2, diem3, diem4, diem5);
 				userSubjectDao.addUserSubject(userSubject);
 				break;
 				

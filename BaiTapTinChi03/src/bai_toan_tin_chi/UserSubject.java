@@ -1,16 +1,16 @@
 package bai_toan_tin_chi;
 
 public class UserSubject {
-	private int maMhNguoiDung;
-	private int maNguoiDung;
-	private int maMh;
+	private String maMhNguoiDung;
+	private String maNguoiDung;
+	private String maMh;
 	private float diem1;
 	private float diem2;
 	private float diem3;
 	private float diem4;
 	private float diem5;
 	
-	public UserSubject(int maNguoiDung, int maMh, float diem1, float diem2, float diem3, float diem4, float diem5) {
+	public UserSubject(String maNguoiDung, String maMh, float diem1, float diem2, float diem3, float diem4, float diem5) {
 		this.maNguoiDung = maNguoiDung;
 		this.maMh = maMh;
 		this.diem1 = diem1;
@@ -20,7 +20,7 @@ public class UserSubject {
 		this.diem5 = diem5;
 	}
 	
-	public UserSubject(int maMhNguoiDung,int maNguoiDung, int maMh, float diem1, float diem2, float diem3, float diem4, float diem5) {
+	public UserSubject(String maMhNguoiDung,String maNguoiDung,String maMh, float diem1, float diem2, float diem3, float diem4, float diem5) {
 		this.maMhNguoiDung = maMhNguoiDung;
 		this.maNguoiDung = maNguoiDung;
 		this.maMh = maMh;
@@ -31,27 +31,27 @@ public class UserSubject {
 		this.diem5 = diem5;
 	}
 
-	public int getMaMhNguoiDung() {
+	public String getMaMhNguoiDung() {
 		return maMhNguoiDung;
 	}
 
-	public void setMaMhNguoiDung(int maMhNguoiDung) {
+	public void setMaMhNguoiDung(String maMhNguoiDung) {
 		this.maMhNguoiDung = maMhNguoiDung;
 	}
 
-	public int getMaNguoiDung() {
+	public String getMaNguoiDung() {
 		return maNguoiDung;
 	}
 
-	public void setMaNguoiDung(int maNguoiDung) {
+	public void setMaNguoiDung(String maNguoiDung) {
 		this.maNguoiDung = maNguoiDung;
 	}
 
-	public int getMaMh() {
+	public String getMaMh() {
 		return maMh;
 	}
 
-	public void setMaMh(int maMh) {
+	public void setMaMh(String maMh) {
 		this.maMh = maMh;
 	}
 
@@ -94,6 +94,5 @@ public class UserSubject {
 	public void setDiem5(float diem5) {
 		this.diem5 = diem5;
 	}
-	
-	
+
 }

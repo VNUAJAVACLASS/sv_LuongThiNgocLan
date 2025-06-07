@@ -11,26 +11,33 @@ public class UserSubjectView {
 
 	public UserSubjectView() {
 		try {
-			String URL = "jdbc:ucanaccess://lib/QLNN.accdb";
-			connection = DriverManager.getConnection(URL);
+			String driverName = "com.mysql.cj.jdbc.Driver";
+			String URL = "jdbc:mysql://localhost:3306/qlsv";
+			String user = "Lan";
+			String pass = "12345";
+			connection = DriverManager.getConnection(URL, user, pass);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void showUserSubject() {
-		String query = "SELECT u.HoTen,s.TenMh,us.Diem1,us.Diem2,us.Diem3,us.Diem4,us.Diem5" + "FROM User u"
-				+ "INNER JOIN UserSubject us ON u.MaNguoiDung=us.MaNguoiDung"
-				+ "INNER JOIN Subject s ON s.MaMh=us.MaMh";
+		String query =
+			    "SELECT u.HoTen, s.TenMh, us.Diem1, us.Diem2, us.Diem3, us.Diem4, us.Diem5 " +
+			    "FROM qlsv.user u " +
+			    "INNER JOIN qlsv.usersubject us ON u.MaNguoiDung = us.MaNguoiDung " +
+			    "INNER JOIN qlsv.subject s ON s.MaMh = us.MaMh";
+
+
 		try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
 			while (rs.next()) {
 				String hoTen = rs.getString("HoTen");
 				String tenMh = rs.getString("TenMh");
-				int diem1 = rs.getInt("Diem1");
-				int diem2 = rs.getInt("Diem2");
-				int diem3 = rs.getInt("Diem3");
-				int diem4 = rs.getInt("Diem4");
-				int diem5 = rs.getInt("Diem5");
+				float diem1 = rs.getFloat("Diem1");
+				float diem2 = rs.getFloat("Diem2");
+				float diem3 = rs.getFloat("Diem3");
+				float diem4 = rs.getFloat("Diem4");
+				float diem5 = rs.getFloat("Diem5");
 				System.out.println("Họ tên: " + hoTen + "Môn: " + tenMh + "| Diểm: " + diem1 + "," + diem2 + "," + diem3
 						+ "," + diem4 + "," + diem5);
 			}

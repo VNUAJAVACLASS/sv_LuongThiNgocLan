@@ -10,23 +10,27 @@ private Connection connection;
 	
 	public UserSubjectDao() {
 		try {
-			String URL = "jdbc:ucanaccess://lib/QLNN.accdb";
-			connection = DriverManager.getConnection(URL);
+			String driverName = "com.mysql.cj.jdbc.Driver";
+			String URL = "jdbc:mysql://localhost:3306/qlsv";
+			String user = "Lan";
+			String pass = "12345";
+			connection = DriverManager.getConnection(URL, user, pass);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public boolean addUserSubject(UserSubject userSubject) {
-		String query = "INSERT INTO UserSubject ( MaNguoiDung,MaMh,Diem1,Diem2,Diem3,Diem4,Diem5) VALUES(?,?,?,?,?,?,?)";
+		String query = "INSERT INTO qlsv.usersubject ( MaMhNguoiDung,MaNguoiDung,MaMH,Diem1,Diem2,Diem3,Diem4,Diem5) VALUES(?,?,?,?,?,?,?,?)";
 		try (PreparedStatement stmt = connection.prepareStatement(query)) {
-			stmt.setInt(1, userSubject.getMaNguoiDung());
-			stmt.setInt(2, userSubject.getMaMh());
-			stmt.setFloat(3, userSubject.getDiem1());
-			stmt.setFloat(4, userSubject.getDiem2());
-			stmt.setFloat(5, userSubject.getDiem3());
-			stmt.setFloat(6, userSubject.getDiem4());
-			stmt.setFloat(7, userSubject.getDiem5());
+			stmt.setString(1, userSubject.getMaMhNguoiDung());
+			stmt.setString(2, userSubject.getMaNguoiDung());
+			stmt.setString(3, userSubject.getMaMh());
+			stmt.setFloat(4, userSubject.getDiem1());
+			stmt.setFloat(5, userSubject.getDiem2());
+			stmt.setFloat(6, userSubject.getDiem3());
+			stmt.setFloat(7, userSubject.getDiem4());
+			stmt.setFloat(8, userSubject.getDiem5());
 
 			int rowInserted = stmt.executeUpdate();
 			return rowInserted > 0;
@@ -37,16 +41,16 @@ private Connection connection;
 	}
 
 	public boolean updateUserSubject(UserSubject userSubject) {
-		String query = "UPDATE UserSubject SET MaNguoiDung =?,MaMh=?,Diem1=?,Diem2=?,Diem3=?,Diem4=?,Diem5=? WHERE MaMhNguoiDung=?";
+		String query = "UPDATE qlsv.usersubject SET MaNguoiDung =?,MaMH=?,Diem1=?,Diem2=?,Diem3=?,Diem4=?,Diem5=? WHERE MaMhNguoiDung=?";
 		try (PreparedStatement stmt=connection.prepareStatement(query)){
-			stmt.setInt(1, userSubject.getMaNguoiDung());
-			stmt.setInt(2, userSubject.getMaMh());
+			stmt.setString(1, userSubject.getMaNguoiDung());
+			stmt.setString(2, userSubject.getMaMh());
 			stmt.setFloat(3, userSubject.getDiem1());
 			stmt.setFloat(4, userSubject.getDiem2());
 			stmt.setFloat(5, userSubject.getDiem3());
 			stmt.setFloat(6, userSubject.getDiem4());
 			stmt.setFloat(7, userSubject.getDiem5());
-			stmt.setInt(8, userSubject.getMaMhNguoiDung());
+			stmt.setString(8, userSubject.getMaMhNguoiDung());
 			
 			int rowsUpdate = stmt.executeUpdate();
 			return rowsUpdate >0;			
@@ -57,7 +61,7 @@ private Connection connection;
 	}
 	
 	public boolean deleteUserSubject(int userSubjectId) {
-		String query = "DELETE FROM UserSubject WHERE MaMhNguoiDung =?";
+		String query = "DELETE FROM qlsv.usersubject WHERE MaMhNguoiDung =?";
 		try (PreparedStatement stmt = connection.prepareStatement(query)){
 			stmt.setInt(1, userSubjectId);
 			int rowDeleted = stmt.executeUpdate();
